@@ -51,10 +51,16 @@ class TipModel:
         else:
             self.__tip_percent = value / 100
 
+    @num_people.setter
+    def num_people(self, value):
+        if value <= 0:
+            raise ValueError("Error: \"num_people\" must be positive. ")
+        else:
+            self.__num_people = value
+    
 
     def __str__(self):
         return f"Bill: ${self.bill_amount}, {self.tip_percent * 100}% tip = {self.tip_amount}"
 
     
-        
     
