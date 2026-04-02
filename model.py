@@ -1,7 +1,8 @@
 class TipModel:
-    def __init__(self, bill_amount = 0, tip_percent = 0):
+    def __init__(self, bill_amount = 0, tip_percent = 0, num_people = 1):
         self.__bill_amount = bill_amount
         self.__tip_percent = tip_percent
+        self.__num_people = num_people
 
 
     # Creates a getter property called "bill_amount"
@@ -21,6 +22,17 @@ class TipModel:
     @property
     def tip_amount(self):
         return self.__bill_amount * self.__tip_percent
+    
+    @property
+    def num_people(self):
+        if self.__num_people < 1:
+            raise ValueError("Error: \"num_people\" must be at least 1.")
+        else:
+            return self.__num_people
+
+    @property
+    def total_per_person(self):
+        return (self.__bill_amount + self.tip_amount) / self.__num_people
 
     # creates a setter property for the related attribute.
     # Use Case: obj_name.bill_amount = 24.00
